@@ -52,12 +52,12 @@ def test_recipe_creation():
 
 
 def test_recipe_add_ingredient():
-    recipe = Recipe("Пицца")
+    recipe = Recipe("Пицца", [])
     recipe.add_ingredient(Ingredient("Мука", 300, "г"))
     assert len(recipe) == 1
 
 def test_recipe_add_duplicate():
-    recipe = Recipe("Пицца")
+    recipe = Recipe("Пицца", [])
     recipe.add_ingredient(Ingredient("Мука", 300, "г"))
     recipe.add_ingredient(Ingredient("Мука", 200, "г"))
     assert len(recipe) == 1
@@ -77,7 +77,7 @@ def test_recipe_scale():
     assert isinstance(scaled, Recipe) 
 
 def test_recipe_scale_invalid():
-    recipe = Recipe("Пицца")
+    recipe = Recipe("Пицца", [])
     recipe.add_ingredient(Ingredient("Мука", 300, "г"))
     with pytest.raises(ValueError):
         recipe.scale(0)
@@ -113,7 +113,7 @@ def test_recipe_is_valid_ratio():
 # тесты для диетических рецептов
 
 def test_dietary_recipe():
-    recipe = DietaryRecipe("Салат", "веган")
+    recipe = DietaryRecipe("Салат", "веган", [])
     recipe.add_ingredient(Ingredient("Огурец", 100, "г"))
     assert recipe.diet_type == "веган"
     assert "[веган]" in str(recipe)
@@ -162,7 +162,7 @@ def test_shopping_list_add_recipe():
     assert shopping._items[0][1] == "Пицца"
 
 def test_shopping_list_invalid_portions():
-    recipe = Recipe("Пицца")
+    recipe = Recipe("Пицца", [])
     shopping = ShoppingList()
     with pytest.raises(ValueError):
         shopping.add_recipe(recipe, 0)
@@ -183,9 +183,9 @@ def test_shopping_list_remove():
     assert shopping._items[0][1] == "Салат"
 
 def test_shopping_list_get_list_sums():
-    pizza = Recipe("Пицца")
+    pizza = Recipe("Пицца", [])
     pizza.add_ingredient(Ingredient("Мука", 300, "г"))
-    bread = Recipe("Хлеб")
+    bread = Recipe("Хлеб", [])
     bread.add_ingredient(Ingredient("Мука", 200, "г"))
     
     shopping = ShoppingList()
@@ -199,7 +199,7 @@ def test_shopping_list_add_two_lists():
     list1 = ShoppingList()
     list2 = ShoppingList()
     
-    recipe = Recipe("Пицца")
+    recipe = Recipe("Пицца", [])
     recipe.add_ingredient(Ingredient("Мука", 300, "г"))
     list1.add_recipe(recipe, 1)
     list2.add_recipe(recipe, 1)

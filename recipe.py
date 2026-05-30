@@ -7,9 +7,9 @@ class Recipe:
     
     def add_ingredient(self, ingredient: Ingredient):
         "Добавляем ингредиент, если уже есть - суммируем"
-        for i in self.ingredients:
-            if i == ingredient: 
-                i.quantity += ingredient.quantity
+        for existing_ingredient in self.ingredients:
+            if existing_ingredient == ingredient: 
+                existing_ingredient.quantity += ingredient.quantity
                 return
         self.ingredients.append(ingredient)
     
