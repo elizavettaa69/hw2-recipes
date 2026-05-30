@@ -7,16 +7,9 @@ class DietaryRecipe(Recipe):
         self.diet_type = diet_type
     
     def scale(self, ratio: float):
-        if not self.is_valid_ratio(ratio):
-            raise ValueError("Коэффициент масштабирования должен быть положительным числом")
+        scaled_recipe = super().scale(ratio)
+        return DietaryRecipe(scaled_recipe.title, self.diet_type, scaled_recipe.ingredients)
         
-        new_ingredients = []
-        for ing in self.ingredients:
-            new_ing = Ingredient(ing.name, ing.quantity * ratio, ing.unit)
-            new_ingredients.append(new_ing)
-        
-        return DietaryRecipe(self.title, self.diet_type, new_ingredients)
-    
     def __str__(self):
         parent_str = super().__str__()
         return f"[{self.diet_type}] {parent_str}"
