@@ -1,14 +1,14 @@
 from ingredient import Ingredient
 
 class Recipe:
-    def __init__(self, title: str, ingredients=None):
+    def __init__(self, title: str, ingredients= list):
         self.title = title
         self.ingredients = ingredients if ingredients is not None else []
     
     def add_ingredient(self, ingredient: Ingredient):
         "Добавляем ингредиент, если уже есть - суммируем"
         for i in self.ingredients:
-            if i == ingredient:  # сработает __eq__ из Ingredient
+            if i == ingredient: 
                 i.quantity += ingredient.quantity
                 return
         self.ingredients.append(ingredient)
@@ -18,7 +18,7 @@ class Recipe:
         return isinstance(ratio, (int, float)) and ratio > 0
     
     def scale(self, ratio: float):
-        if not self.is_valid_ratio(ratio):
+        if not Recipe.is_valid_ratio(ratio):
             raise ValueError("Коэффициент масштабирования должен быть положительным")
         
         new_ingredients = []
@@ -37,12 +37,3 @@ class Recipe:
         
         ingredients_str = "\n".join(f"  {i}" for i in self.ingredients)
         return f"{self.title}:\n{ingredients_str}"
-
-
-if __name__ == "__main__":
-    # Простая проверка
-    пицца = Recipe("Пицца Маргарита")
-    пицца.add_ingredient(Ingredient("Мука", 300, "г"))
-    пицца.add_ingredient(Ingredient("Сыр", 200, "г"))
-    print(пицца)
-    print(f"Количество ингредиентов: {len(пицца)}")
