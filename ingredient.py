@@ -1,9 +1,8 @@
-
 class Ingredient:
     def __init__(self, name: str, quantity: float, unit: str):
         self.name = name
-        self._quantity = float(quantity)
         self.unit = unit
+        self.quantity = quantity
     
     @property
     def quantity(self):
@@ -31,6 +30,6 @@ class Ingredient:
 
 
 if __name__ == "__main__":
-    мука = Ingredient("Мука", 500, "г")
-    print(мука)
-    print(repr(мука))
+    myka = Ingredient("Myka", 500, "r")
+    print(myka)
+    print(repr(myka))

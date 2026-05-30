@@ -7,7 +7,7 @@ class ShoppingList:
     
     def add_recipe(self, recipe: Recipe, portions: float):
         if portions <= 0:
-            raise ValueError("Количество порций должно быть неотрицательным")
+            raise ValueError("Количество порций должно быть положительным")
         
         scaled_recipe = recipe.scale(portions)
         

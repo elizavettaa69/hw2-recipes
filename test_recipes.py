@@ -28,7 +28,7 @@ def test_ingredient_quantity_validation():
     with pytest.raises(ValueError):
         ing.quantity = -50
 
-# ===== Тесты для Recipe =====
+# тесты для Recipe
 
 def test_recipe_add_ingredient():
     recipe = Recipe("Пицца")
@@ -49,7 +49,7 @@ def test_recipe_scale():
     recipe.add_ingredient(Ingredient("Мука", 300, "г"))
     scaled = recipe.scale(2)
     assert scaled.ingredients[0].quantity == 600
-    assert recipe.ingredients[0].quantity == 300  # исходный не изменился
+    assert recipe.ingredients[0].quantity == 300  
 
 def test_recipe_scale_invalid():
     recipe = Recipe("Пицца")
@@ -57,7 +57,7 @@ def test_recipe_scale_invalid():
     with pytest.raises(ValueError):
         recipe.scale(0)
 
-# ===== Тесты для DietaryRecipe =====
+# тесты для диетических рецептов
 
 def test_dietary_recipe():
     recipe = DietaryRecipe("Салат", "веган")
@@ -69,7 +69,7 @@ def test_dietary_recipe():
     assert isinstance(scaled, DietaryRecipe)
     assert scaled.diet_type == "веган"
 
-# ===== Тесты для ShoppingList =====
+# тесты для списка покупок
 
 def test_shopping_list_add():
     recipe = Recipe("Пицца")
