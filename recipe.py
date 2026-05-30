@@ -1,14 +1,13 @@
 from ingredient import Ingredient
 
 class Recipe:
-    def __init__(self, title: str, ingredients= list):
+    def __init__(self, title: str, ingredients: list = None):
         self.title = title
         self.ingredients = ingredients if ingredients is not None else []
     
     def add_ingredient(self, ingredient: Ingredient):
-        "Добавляем ингредиент, если уже есть - суммируем"
         for existing_ingredient in self.ingredients:
-            if existing_ingredient == ingredient: 
+            if existing_ingredient == ingredient:
                 existing_ingredient.quantity += ingredient.quantity
                 return
         self.ingredients.append(ingredient)
